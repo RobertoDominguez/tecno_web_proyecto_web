@@ -25,25 +25,35 @@
                                     <h3 class="text-center font-weight-light my-4">Iniciar sesión</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form action="{{route('login')}}" method="POST">
+                                    <form action="{{ route('login') }}" method="POST">
                                         {{ csrf_field() }}
                                         <div class="form-group"><label class="small mb-1"
                                                 for="inputEmailAddress">Correo</label>
-                                                <input class="form-control py-4" id="inputEmailAddress" name="email" type="email" placeholder="Introduce tu correo." />
+                                            <input class="form-control py-4" id="inputEmailAddress" name="email"
+                                                type="email" placeholder="Introduce tu correo." />
                                         </div>
                                         <div class="form-group"><label class="small mb-1"
                                                 for="inputPassword">Contraseña</label>
-                                                <input class="form-control py-4" name="password" id="inputPassword" type="password" placeholder="Introduce tu contraseña" />
-                                            </div>
+                                            <input class="form-control py-4" name="password" id="inputPassword"
+                                                type="password" placeholder="Introduce tu contraseña" />
+                                        </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox">
-                                                <input class="custom-control-input" id="rememberPasswordCheck" type="checkbox" />
-                                                <label class="custom-control-label" for="rememberPasswordCheck">Recuerdame</label>
-                                                </div>
+                                                <input class="custom-control-input" id="rememberPasswordCheck"
+                                                    type="checkbox" />
+                                                <label class="custom-control-label"
+                                                    for="rememberPasswordCheck">Recuerdame</label>
+                                            </div>
                                         </div>
                                         <div
                                             class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="small"></a>
+                                            <a class="small">
+
+                                                @php
+                                                    echo 'visitas: ' . $visitas->count;
+                                                @endphp
+
+                                            </a>
                                             <input type="submit" class="btn btn-primary" value="Login">
                                         </div>
                                     </form>
@@ -52,6 +62,8 @@
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </main>
         </div>

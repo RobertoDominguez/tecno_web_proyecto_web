@@ -33,6 +33,9 @@ Route::middleware(['guest'])->group(function () {
 });
 Route::post('/logout', [UsuarioController::class, 'logout'])->name('logout')->middleware('auth');
 
+Route::post('/modo/dia',[UsuarioController::class,'modoDia'])->name('modo.dia');
+Route::post('/modo/noche',[UsuarioController::class,'modoNoche'])->name('modo.noche');
+
 //administrador
 Route::prefix('administrador')->middleware(['auth','admin'])->group(function () {
     Route::get('/usuarios', [UsuarioController::class, 'index'])->name('administrador.usuario.index');

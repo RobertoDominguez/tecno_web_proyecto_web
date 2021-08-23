@@ -12,12 +12,18 @@ use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
+
+    public function __construct(){
+        if (!\Session::has('tema')) \Session::put('modo',null);
+        if (!\Session::has('tema')) \Session::put('tema',null);
+    }
+
     public function loginView(){
 
         $visitas=Pagina::where('url','loginView')->get()->first();
         $visitas->update(['count'=>$visitas->count+1]);
 
-        return view('login',compact('visitas'));
+        return view('login',compact('visitas'),compact('visitas'));
     }
 
     public function login(Request $request){
@@ -196,4 +202,16 @@ class UsuarioController extends Controller
         $usuario->delete();
         return redirect(route('administrador.usuario.index'));
     }
+
+
+    public function  modoNoche(){
+        \Session::put('modo','noche');
+        return back();
+    }
+
+    public function modoDia(){
+        \Session::put('modo','dia');
+        return back();
+    }
+
 }
