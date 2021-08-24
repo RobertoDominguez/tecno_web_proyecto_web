@@ -51,11 +51,11 @@
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Nro</th>
+                                                    <th>Codigo</th>
                                                     <th>Nombre</th>
-                                                    <th>Titulo</th>
-                                                    <th></th>
-                                                    <th></th>
+                                                    <th>Nivel</th>
+                                                    <th>Ubicacion</th>
+                                                    <th>Estado</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
@@ -65,26 +65,20 @@
                                                     <th></th>
                                                     <th></th>
                                                     <th></th>
+                                                    <th></th>
                                                 </tr>
                                             </tfoot>
                                             <tbody>
-                                                <tr>
-                                                    @if (!is_null($documento))
-                                                        <td>{{ $documento->id }}</td>
-                                                        <td>{{ $documento->nombre_interesado }}</td>
-                                                        <td>{{ $documento->titulo }}</td>
-                                                        <td>
-                                                            <a class="btn btn-primary"
-                                                                href="{{ route('documento.estado', $documento->id) }}">Ver
-                                                                estado</a>
-                                                        </td>
-                                                        <td>
-                                                            <a class="btn btn-danger"
-                                                                href="{{ route('documento.ubicacion', $documento->id) }}">Ver
-                                                                ubicacion</a>
-                                                        </td>
-                                                    @endif
-                                                </tr>
+                                                @foreach ($unidades as $unidad)
+                                                    <tr>
+
+                                                        <td>{{ $unidad->codigo }}</td>
+                                                        <td>{{ $unidad->nombre }}</td>
+                                                        <td>{{ $unidad->nivel }}</td>
+                                                        <td>{{ $unidad->ubicacion }}</td>
+                                                        <td>{{ $unidad->nombre_estado }}</td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -95,15 +89,6 @@
 
                     </div>
                     <!-- /.card-body -->
-
-                    @if (\Session::has('estado'))
-                    <div class="alert alert-success">
-                        <ul>
-                            <li>{!! \Session::get('estado') !!}</li>
-                        </ul>
-                    </div>
-                @endif
-
                 </div>
             </div>
         </div>

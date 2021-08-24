@@ -6,6 +6,7 @@ use App\Models\Documento;
 use App\Models\Estado;
 use App\Models\Pagina;
 use App\Models\Tarea;
+use App\Models\Unidad;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -29,6 +30,20 @@ class SeguimientoController extends Controller
             ->join('documento', 'documento.id', 'tarea.id_documento')
             ->where('documento.id', $id)->get()->first();
 
-        return view('');
+            return redirect()->back()->with('estado', $estado->nombre);   
+    }
+
+    public function ubicacion($id)
+    {
+        $unidades=Documento::join('tarea','documento.id','tarea.id_documento')
+        ->join('usuario','usuario.id','tarea.id_receptor')
+        ->join('unidad','usuario.id_unidad','unidad.id')
+        ->join('estado','tarea.id_estado','estado.id')
+        ->select('unidad.*','estado.nombre as nombre_estado')->get();
+
+        $visitas = Pagina::where('url', 'documento.ubicacion')->get()->first();
+        $visitas->update(['count' => $visitas->count + 1]);
+
+        return view('cliente.seguimiento.ubicacion',compact('unidades'),compact('visitas'));
     }
 }
