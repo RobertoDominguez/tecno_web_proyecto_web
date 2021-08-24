@@ -18,7 +18,7 @@
 </head>
 
 <body class="sb-nav-fixed">
-    @if (\Session::get('modo')=='dia')
+    @if (\Session::get('modo') == 'dia')
         <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
         @else
             <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -40,12 +40,12 @@
             <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <form action="{{route('modo.dia')}}" method="POST">
+                <form action="{{ route('modo.dia') }}" method="POST">
                     {{ csrf_field() }}
                     <input type="submit" class="dropdown-item" value="Modo Dia">
                 </form>
-                
-                <form action="{{route('modo.noche')}}" method="POST">
+
+                <form action="{{ route('modo.noche') }}" method="POST">
                     {{ csrf_field() }}
                     <input type="submit" class="dropdown-item" value="Modo Noche">
                 </form>
@@ -62,49 +62,46 @@
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            @if (\Session::get('modo')=='dia')
-                <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">    
-            @else
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            @if (\Session::get('modo') == 'dia')
+                <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+                @else
+                    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             @endif
-            
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Nucleo</div>
-                        <a class="nav-link" href="{{ route('usuario.documento.index') }}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Documentos
-                        </a>
 
-                        <a class="nav-link" href="{{ route('usuario.tarea.index') }}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Tareas
-                        </a>
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <div class="sb-sidenav-menu-heading">Nucleo</div>
+                    <a class="nav-link" href="{{ route('usuario.documento.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Documentos
+                    </a>
 
-                        <a class="nav-link" href="{{ route('usuario.bifurcacion.index') }}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Bifurcaciones
-                        </a>
+                    <a class="nav-link" href="{{ route('usuario.tarea.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Tareas
+                    </a>
 
-                        <a class="nav-link" href="{{ route('usuario.union.index') }}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Uniones
-                        </a>
+                    <a class="nav-link" href="{{ route('usuario.bifurcacion.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Bifurcaciones
+                    </a>
 
-                        <div class="sb-sidenav-menu-heading">Estadisticas</div>
-                        <a class="nav-link" href="charts.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Charts
-                        </a><a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Reportes
-                        </a>
-                    </div>
+                    <a class="nav-link" href="{{ route('usuario.union.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Uniones
+                    </a>
+
+                    <div class="sb-sidenav-menu-heading">Estadisticas</div>
+                    <a class="nav-link" href="{{route('usuario.reporte.index')}}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                        Reportes
+                    </a>
                 </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Conectado como:</div>
-                    Usuario
-                </div>
+            </div>
+            <div class="sb-sidenav-footer">
+                <div class="small">Conectado como:</div>
+                Usuario
+            </div>
             </nav>
         </div>
         <div id="layoutSidenav_content">

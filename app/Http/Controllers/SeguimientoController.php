@@ -30,7 +30,7 @@ class SeguimientoController extends Controller
             ->join('documento', 'documento.id', 'tarea.id_documento')
             ->where('documento.id', $id)->get()->first();
 
-            return redirect()->back()->with('estado', $estado->nombre);   
+        return redirect()->back()->with('estado', $estado->nombre);   
     }
 
     public function ubicacion($id)

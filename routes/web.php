@@ -6,6 +6,7 @@ use App\Http\Controllers\UnidadController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\TareaController;
 use App\Http\Controllers\BifurcacionController;
+use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\SeguimientoController;
 use App\Http\Controllers\UnionController;
 use Illuminate\Support\Facades\Route;
@@ -52,7 +53,7 @@ Route::prefix('administrador')->middleware(['auth','admin'])->group(function () 
     Route::post('/unidad/editar/{unidad}', [UnidadController::class, 'update'])->name('administrador.unidad.update');
     Route::post('/unidad/eliminar/{unidad}', [UnidadController::class, 'destroy'])->name('administrador.unidad.destroy');
 
-    Route::get('/reportes', [AdministradorController::class, ''])->name('');
+    Route::get('/reportes', [AdministradorController::class, 'reporteView'])->name('administrador.reporte.index');
 });
 
 //usuarios
@@ -82,5 +83,5 @@ Route::prefix('usuario')->middleware(['auth','user'])->group(function () {
     Route::get('/uniones/verificar/{id_tarea}', [UnionController::class, 'verificar'])->name('usuario.union.verificar');
     Route::post('/uniones/realizar', [UnionController::class, 'realizar'])->name('usuario.union.realizar');
 
-    Route::get('/reportes', [DocumentoController::class, 'index'])->name('usuario.reporte.index');
+    Route::get('/reportes', [ReporteController::class, 'reporteView'])->name('usuario.reporte.index');
 });
