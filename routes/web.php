@@ -37,6 +37,9 @@ Route::post('/logout', [UsuarioController::class, 'logout'])->name('logout')->mi
 Route::post('/modo/dia',[UsuarioController::class,'modoDia'])->name('modo.dia');
 Route::post('/modo/noche',[UsuarioController::class,'modoNoche'])->name('modo.noche');
 
+Route::post('/tema/nino', [UsuarioController::class, 'temaNino'])->name('tema.nino');
+Route::post('/tema/joven', [UsuarioController::class, 'temaJoven'])->name('tema.joven');
+Route::post('/tema/adulto', [UsuarioController::class, 'temaAdulto'])->name('tema.adulto');
 //administrador
 Route::prefix('administrador')->middleware(['auth','admin'])->group(function () {
     Route::get('/usuarios', [UsuarioController::class, 'index'])->name('administrador.usuario.index');

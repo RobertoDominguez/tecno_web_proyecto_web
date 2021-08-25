@@ -210,4 +210,22 @@ class UsuarioController extends Controller
         return back();
     }
 
+    public function  temaNino()
+    {
+        \Session::put('tema', 'nino');
+        return back();
+    }
+
+    public function temaJoven()
+    {
+        \Session::put('tema', 'joven');
+        return back();
+    }
+
+    public function temaAdulto()
+    {
+        \Session::put('tema', 'adulto');
+        return back();
+    }
+
 }
