@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Documento;
+use App\Models\Estado;
 use App\Models\Pagina;
 use App\Models\Tarea;
 use App\Models\Usuario;
@@ -94,11 +95,12 @@ class TareaController extends Controller
     {
         $documentos=Documento::Terminados()->get();
         $receptores=Usuario::where('id_rol',2)->get();
+        $estados=Estado::all();
         
         $visitas=Pagina::where('url','usuario.bifurcacion.edit')->get()->first();
         $visitas->update(['count'=>$visitas->count+1]);
 
-        return view('personal.tarea.edit',compact('tarea'),compact('documentos','receptores'))->with(compact('visitas'));
+        return view('personal.tarea.edit',compact('tarea','estados'),compact('documentos','receptores'))->with(compact('visitas'));
     }
 
     /**
@@ -116,6 +118,7 @@ class TareaController extends Controller
             'fecha_ingreso'=>'required',
             'id_documento'=>'required',
             'id_receptor'=>'required',
+            'id_estado'=>'required'
         ]);
 
         $data=[
@@ -126,7 +129,7 @@ class TareaController extends Controller
             'id_documento'=>$request->id_documento,
             'id_emisor'=>Auth::user()->id,
             'id_receptor'=>$request->id_receptor,
-            'id_estado'=>1,
+            'id_estado'=>$request->id_estado
         ];
 
         $tarea->update($data);

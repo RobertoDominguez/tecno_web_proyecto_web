@@ -7,7 +7,7 @@
             <div class="col-12">
                 <div class="card card-secondary">
                     <div class="card-header">
-                        <h3 class="card-title">Agregar Unidad</h3>
+                        <h3 class="card-title">Editar Tarea</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -86,6 +86,26 @@
                                                         <option value="{{ $receptor->id }}">
                                                             {{ $receptor->nombre . ' ' . $receptor->ap_paterno . ' ' . $receptor->ap_materno }}
                                                         </option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Estado:</strong>
+                                        <div>
+                                            <select id="editType" name="id_estado" class="custom-select mr-sm-2"
+                                                id="inlineFormCustomSelect">
+                                                
+                                                </option>
+                                                @foreach ($estados as $estado)
+                                                    @if ($estado->id != $tarea->id_estado)
+                                                        <option value="{{ $estado->id }}">{{ $estado->nombre }}</option>
+                                                    @else
+                                                        <option value="{{ $estado->id }}" selected>{{ $estado->nombre }}</option>
                                                     @endif
                                                 @endforeach
                                             </select>

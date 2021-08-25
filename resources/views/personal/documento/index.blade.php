@@ -4,7 +4,7 @@
 
     <div class="card card-secondary">
         <div class="card-header">
-            <h3 class="card-title">Documentos</h3>
+            <h3 class="card-title">Gestionar Documentos</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->

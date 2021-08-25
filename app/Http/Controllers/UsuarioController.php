@@ -162,7 +162,7 @@ class UsuarioController extends Controller
         $this->validate(request(),[
             'ci'=>'required',
             'email'=>'required',
-            //'password'=>'required',
+            'password'=>'required',
             'nombre'=>'required',
             'ap_paterno'=>'required',
             'ap_materno'=>'required',
@@ -174,7 +174,7 @@ class UsuarioController extends Controller
         $data=[
             'ci'=>$request->ci,
             'email'=>$request->email,
-            //'password'=>$request->password,
+            'password'=>Hash::make($request->password),
             'nombre'=>$request->nombre,
             'ap_paterno'=>$request->ap_paterno,
             'ap_materno'=>$request->ap_materno,
@@ -182,10 +182,6 @@ class UsuarioController extends Controller
             'id_rol'=>$request->id_rol,
             'id_unidad'=>$request->id_unidad,
         ];
-
-        if (!is_null($request->password)){
-            $usuario->update(['password'=>Hash::make($request->password)]);
-        }
 
         $usuario->update($data);
         return redirect(route('administrador.usuario.index'));

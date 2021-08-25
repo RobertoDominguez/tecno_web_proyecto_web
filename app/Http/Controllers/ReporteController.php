@@ -41,7 +41,9 @@ class ReporteController extends Controller
         $cantidad = Documento::join('tarea', 'tarea.id_documento', 'documento.id')
             ->join('usuario', 'usuario.id', 'tarea.id_receptor')
             ->join('unidad', 'unidad.id', 'usuario.id_unidad')
-            ->get()->count();
+            ->where('unidad.id',$id_unidad)
+            ->get()
+            ->count();
 
         return $cantidad;
     }
@@ -49,7 +51,9 @@ class ReporteController extends Controller
     public static function tareasPorUnidad($id_unidad)
     {
         $tareas=Tarea::join('usuario','usuario.id','tarea.id_receptor')
-        ->join('unidad','unidad.id','usuario.id_unidad')->get()->count();
+        ->join('unidad','unidad.id','usuario.id_unidad')
+        ->where('unidad.id',$id_unidad)
+        ->get()->count();
         return $tareas;
     }
 }

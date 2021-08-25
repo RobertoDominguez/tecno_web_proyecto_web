@@ -7,7 +7,7 @@
             <div class="col-12">
                 <div class="card card-secondary">
                     <div class="card-header">
-                        <h3 class="card-title">Agregar Unidad</h3>
+                        <h3 class="card-title">Agregar Bifurcacion</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
